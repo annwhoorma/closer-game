@@ -23,7 +23,7 @@ def reply_text(update: Update, message: str):
     update.message.reply_chat_action(ChatAction.TYPING)
     update.message.reply_text(message)
 
-def reply_photo(update: Update, fp: FileInput, caption: str | None = None):
+def reply_photo(update: Update, fp: FileInput, caption=None):
     update.message.reply_chat_action(ChatAction.UPLOAD_PHOTO)
     update.message.reply_photo(photo=fp, caption=caption)
 
