@@ -69,6 +69,10 @@ def get_rules(update: Update, context: CallbackContext):
 
 @command_handler('finish')
 def finish(update: Update, context: CallbackContext):
+    global game, game_deck, current_card
+    game = None
+    game_deck = None
+    current_card = None
     reply_text(update, 'есть слух, что ты солнышко :)')
 
 def main():
@@ -78,10 +82,10 @@ def main():
     current_card = None
     updater.start_polling()
     updater.idle()
-    updater.start_webhook(listen="0.0.0.0",
-                        port=int(PORT),
-                        url_path=TOKEN)
-    updater.bot.setWebhook('https://gentle-sands-74559.herokuapp.com/' + TOKEN)
+    # updater.start_webhook(listen="0.0.0.0",
+    #                     port=int(PORT),
+    #                     url_path=TOKEN)
+    # updater.bot.setWebhook('https://gentle-sands-74559.herokuapp.com/' + TOKEN)
 
 
 if __name__ == '__main__':
