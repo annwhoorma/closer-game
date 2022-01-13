@@ -16,7 +16,7 @@ TOKEN = "5089146854:AAH6Bi-7YYPpTpjb-nRRm1jeAzoS7zA4OoQ"
 updater = Updater(TOKEN, use_context=True)
 dispatcher = updater.dispatcher
 
-PORT = int(os.environ.get('PORT', 5000))
+PORT = int(os.environ.get('PORT', 8443))
 
 
 def reply_text(update: Update, message: str):
