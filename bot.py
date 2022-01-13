@@ -78,12 +78,12 @@ def main():
     game = None
     game_deck = None
     current_card = None
-    updater.start_polling()
     # comment next 4 lines if you run locally
     updater.start_webhook(listen="0.0.0.0",
                         port=int(PORT),
                         url_path=TOKEN)
     updater.bot.setWebhook(f'https://{APP_NAME}.herokuapp.com/{TOKEN}')
+    updater.start_polling()
     updater.idle()
 
 
