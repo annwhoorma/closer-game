@@ -82,10 +82,10 @@ def main():
     current_card = None
     updater.start_polling()
     updater.idle()
-    # updater.start_webhook(listen="0.0.0.0",
-    #                     port=int(PORT),
-    #                     url_path=TOKEN)
-    # updater.bot.setWebhook('https://gentle-sands-74559.herokuapp.com/' + TOKEN)
+    updater.start_webhook(listen="0.0.0.0",
+                        port=int(PORT),
+                        url_path=TOKEN)
+    updater.bot.setWebhook('https://morning-tor-80105.herokuapp.com/' + TOKEN)
 
 
 if __name__ == '__main__':
