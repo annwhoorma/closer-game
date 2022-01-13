@@ -85,7 +85,7 @@ def main():
     updater.start_webhook(listen="0.0.0.0",
                         port=int(PORT),
                         url_path=TOKEN)
-    updater.bot.setWebhook('https://still-mountain-83093.herokuapp.com/' + TOKEN)
+    updater.bot.setWebhook('https://polar-escarpment-17826.herokuapp.com/' + TOKEN)
 
 
 if __name__ == '__main__':
