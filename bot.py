@@ -10,9 +10,9 @@ import os
 from game import Game
 from pathlib import Path
 
-APP_NAME = 'polar-escarpment-17826'
-TOKEN = '5089146854:AAH6Bi-7YYPpTpjb-nRRm1jeAzoS7zA4OoQ'
+APP_NAME = os.environ.get('APP_NAME')
 PORT = int(os.environ.get('PORT', '8443'))
+TOKEN = os.getenv('TOKEN')
 
 
 def reply_text(update: Update, message: str):
@@ -79,11 +79,11 @@ def main():
     game_deck = None
     current_card = None
     # comment next 4 lines if you run locally
-    updater.start_webhook(listen="0.0.0.0",
+    updater.start_webhook(listen='0.0.0.0',
                         port=int(PORT),
-                        url_path=TOKEN)
-    updater.bot.setWebhook(f'https://{APP_NAME}.herokuapp.com/{TOKEN}')
-    updater.start_polling()
+                        url_path=TOKEN,
+                        webhook_url=f'https://{APP_NAME}.herokuapp.com/{TOKEN}')
+    # updater.start_polling()
     updater.idle()
 
 
