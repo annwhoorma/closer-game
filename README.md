@@ -2,6 +2,8 @@
 
 Hey, it's a game that I created for 21st birthday of a very special person. You are welcome to use it as well. Follow [this link](http://t.me/closergame_bot) to play, and I hope you enjoy :)
 
+The bot is deployed with Heroku service, therefore in case of long inactivity, the bot might take longer time to respond. In case it doesn't respond at all, you can contact me :)
+
 ## Description
 
 It's a telegram based game that generated a deck of cards and lets you draw from it. Every card has a description, and in case it's unclear you can read the rules provided in the bot. Below you can see some of the cards.
