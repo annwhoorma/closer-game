@@ -15,29 +15,13 @@ class Game:
         self._game_len = len(self._cards[Q]) + len(self._cards[R]) + len(self._cards[A])
         self.__generate_order()
 
-    def __rules_apply(self, heap_num, last_taken_from):
-        '''doesnt depend on last_take_from for now
-        '''
-        is_heap_empty = len(self._cards[heap_num]) == 0
-        return is_heap_empty
-
     def __generate_order(self):
-        # can be deleted later if still not used
-        last_taken_from = [None, None]
-        num_heaps = len(self._cards.keys())
+        # hardcoded yay
+        order = [Q, A, Q, Q, A, Q, R, Q, Q, A]
+        assert len(order) == self._game_len
         self.deck = []
 
-        for _ in range(self._game_len):
-            # choose from which heap to draw
-            if last_taken_from[-1] is None:
-                heap_num = Q
-            else:
-                heap_num = randint(0, num_heaps-1)
-                while self.__rules_apply(heap_num, last_taken_from):
-                    heap_num = randint(0, num_heaps-1)
-            # shift
-            last_taken_from[0] = last_taken_from[-1]
-            last_taken_from[-1] = heap_num
+        for heap_num in order:
             # update deck and remove used card from the heap
             heap = self._cards[heap_num]
             card_number = randint(0, len(heap)-1)
