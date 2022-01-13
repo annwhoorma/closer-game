@@ -10,12 +10,8 @@ import os
 from game import Game
 from pathlib import Path
 
-TOKEN = "5089146854:AAH6Bi-7YYPpTpjb-nRRm1jeAzoS7zA4OoQ"
-
-# set use_content=False if not needed
-updater = Updater(TOKEN, use_context=True)
-dispatcher = updater.dispatcher
-
+APP_NAME = 'polar-escarpment-17826'
+TOKEN = '5089146854:AAH6Bi-7YYPpTpjb-nRRm1jeAzoS7zA4OoQ'
 PORT = int(os.environ.get('PORT', '8443'))
 
 
@@ -27,15 +23,7 @@ def reply_photo(update: Update, fp: FileInput, caption=None):
     update.message.reply_chat_action(ChatAction.UPLOAD_PHOTO)
     update.message.reply_photo(photo=fp, caption=caption)
 
-def command_handler(command):
-    def decorator(func):
-        handler = CommandHandler(command, func)
-        dispatcher.add_handler(handler)
-        return func
-    return decorator
 
-
-@command_handler('start')
 def start(update: Update, context: CallbackContext):
     global current_card, game_deck
 
@@ -45,7 +33,7 @@ def start(update: Update, context: CallbackContext):
     current_card = 0
     reply_text(update, 'новая колода сгенерирована :)')
 
-@command_handler('next')
+
 def get_next(update: Update, context: CallbackContext):
     global game_deck, current_card
     if game_deck is None or current_card is None:
@@ -60,14 +48,14 @@ def get_next(update: Update, context: CallbackContext):
         reply_text(update, 'это была последняя! <3')
 
 
-@command_handler('help')
+
 def get_rules(update: Update, context: CallbackContext):
     caption = ('в игре есть три вида карт: R (Reverse), Q (Question), and A (Action). '
     'карта R означает, что тому/той, кто ходил_а последним, придется ходить еще раз')
     reply_photo(update, fp=open('images/rules/RulesCard.png', 'rb'), caption=caption)
 
 
-@command_handler('finish')
+
 def finish(update: Update, context: CallbackContext):
     global game, game_deck, current_card
     game = None
@@ -75,16 +63,27 @@ def finish(update: Update, context: CallbackContext):
     current_card = None
     reply_text(update, 'есть слух, что ты солнышко :)')
 
+
+# set use_content=False if not needed
+updater = Updater(TOKEN, use_context=True)
+dispatcher = updater.dispatcher
+dispatcher.add_handler(CommandHandler('start', start))
+dispatcher.add_handler(CommandHandler('next', get_next))
+dispatcher.add_handler(CommandHandler('help', get_rules))
+dispatcher.add_handler(CommandHandler('finish', finish))
+
+
 def main():
     global game, game_deck, current_card
     game = None
     game_deck = None
     current_card = None
     updater.start_polling()
+    # comment next 4 lines if you run locally
     updater.start_webhook(listen="0.0.0.0",
                         port=int(PORT),
                         url_path=TOKEN)
-    updater.bot.setWebhook('https://polar-escarpment-17826.herokuapp.com/' + TOKEN)
+    updater.bot.setWebhook(f'https://{APP_NAME}.herokuapp.com/{TOKEN}')
     updater.idle()
 
 
