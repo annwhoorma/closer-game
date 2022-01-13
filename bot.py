@@ -16,7 +16,7 @@ TOKEN = "5089146854:AAH6Bi-7YYPpTpjb-nRRm1jeAzoS7zA4OoQ"
 updater = Updater(TOKEN, use_context=True)
 dispatcher = updater.dispatcher
 
-PORT = int(os.environ.get('PORT', 80))
+PORT = int(os.environ.get('PORT', '8443'))
 
 
 def reply_text(update: Update, message: str):
@@ -81,11 +81,11 @@ def main():
     game_deck = None
     current_card = None
     updater.start_polling()
-    updater.idle()
     updater.start_webhook(listen="0.0.0.0",
                         port=int(PORT),
                         url_path=TOKEN)
     updater.bot.setWebhook('https://polar-escarpment-17826.herokuapp.com/' + TOKEN)
+    updater.idle()
 
 
 if __name__ == '__main__':
