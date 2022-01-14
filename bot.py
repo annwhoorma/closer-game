@@ -51,7 +51,9 @@ def get_next(update: Update, context: CallbackContext):
 
 def get_rules(update: Update, context: CallbackContext):
     caption = ('в игре есть три вида карт: R (Reverse), Q (Question), and A (Action). '
-    'карта R означает, что тому/той, кто ходил_а последним, придется ходить еще раз')
+    'карта R означает, что тому/той, кто ходил_а последним, придется ходить еще раз. '
+    'остальные карты объясняют сами себя :) '
+    'ах да, чтобы получать карты из колоды, тыкай /next')
     reply_photo(update, fp=open('images/rules/RulesCard.png', 'rb'), caption=caption)
 
 
