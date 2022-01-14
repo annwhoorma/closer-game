@@ -10,7 +10,7 @@ import os
 from game import Game
 from pathlib import Path
 
-APP_NAME = os.environ.get('APP_NAME')
+APP_NAME = os.environ.get('APP_NAME', 'app_name')
 PORT = int(os.environ.get('PORT', '8443'))
 TOKEN = os.getenv('TOKEN')
 
