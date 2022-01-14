@@ -17,6 +17,18 @@ It's a telegram based game that generated a deck of cards and lets you draw from
 
 To create the cards, I used Figma which I never used before, so the cards are not perfect and I'm okay with it
 
+## Run the code locally
+
+1. go to bot.py and comment 4 lines at the end (yeah not very developer-friendly but i was lazy) to not create a webhook
+
+2. run this in your terminal:
+
+```bash
+$ pip install -r requirements.txt
+$ env TOKEN=<your_token> python bot.py
+```
+
+
 ## Contact me
 
 If you have interesting ideas, don't hesitate to open an issue :)
