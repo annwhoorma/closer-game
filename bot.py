@@ -14,13 +14,6 @@ APP_NAME = os.environ.get('APP_NAME', 'app_name')
 PORT = int(os.environ.get('PORT', '8443'))
 TOKEN = os.getenv('TOKEN')
 
-commands = {
-    'help': '/help',
-    'next': '/next',
-    'finish': '/finish',
-    'start': '/start'
-}
-
 
 def reply_text(update: Update, message: str):
     update.message.reply_chat_action(ChatAction.TYPING)
@@ -38,8 +31,7 @@ def start(update: Update, context: CallbackContext):
     game = Game(cards_path)
     game_deck = game.get_deck()
     current_card = 0
-    help_cmd = commands['help']
-    reply_text(update, f'новая колода сгенерирована :) тыкни {help_cmd}, чтобы посмотреть правила')
+    reply_text(update, f'новая колода сгенерирована :) тыкни /help, чтобы посмотреть правила')
 
 
 def get_next(update: Update, context: CallbackContext):
@@ -58,11 +50,10 @@ def get_next(update: Update, context: CallbackContext):
 
 
 def get_rules(update: Update, context: CallbackContext):
-    next_cmd = commands['next']
     caption = ('в игре есть три вида карт: R (Reverse), Q (Question), and A (Action). '
     'карта R означает, что тому/той, кто ходил_а последним, придется ходить еще раз. '
     'остальные карты объясняют сами себя :) '
-    f'ах да, чтобы получать карты из колоды, тыкай {next_cmd}')
+    f'ах да, чтобы получать карты из колоды, тыкай /next')
     reply_photo(update, fp=open('images/rules/RulesCard.png', 'rb'), caption=caption)
 
 
@@ -77,10 +68,10 @@ def finish(update: Update, context: CallbackContext):
 # set use_content=False if not needed
 updater = Updater(TOKEN, use_context=True)
 dispatcher = updater.dispatcher
-dispatcher.add_handler(CommandHandler(commands['start'], start))
-dispatcher.add_handler(CommandHandler(commands['next'], get_next))
-dispatcher.add_handler(CommandHandler(commands['help'], get_rules))
-dispatcher.add_handler(CommandHandler(commands['finish'], finish))
+dispatcher.add_handler(CommandHandler('start', start))
+dispatcher.add_handler(CommandHandler('next', get_next))
+dispatcher.add_handler(CommandHandler('help', get_rules))
+dispatcher.add_handler(CommandHandler('finish', finish))
 
 
 def main():
