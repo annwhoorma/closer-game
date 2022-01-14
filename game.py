@@ -17,8 +17,8 @@ class Game:
 
     def __generate_order(self):
         # hardcoded yay
-        order = [Q, A, Q, Q, A, Q, R, Q, Q, A]
-        assert len(order) == self._game_len
+        order = [Q, A, Q, Q, A, Q, Q, R, Q, Q, A]
+        assert len(order) == self._game_len, 'probably the hardcoded order should be changed'
         self.deck = []
 
         for heap_num in order:
